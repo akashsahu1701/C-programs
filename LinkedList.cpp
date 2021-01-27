@@ -24,7 +24,7 @@ void insertAtTail(node *&head, int val)
         return;
     }
 
-    node *temp;
+    node *temp = head;
     while (temp->next != NULL)
     {
         temp = temp->next;
@@ -196,18 +196,37 @@ void removeCycle(node *&head)
     slow->next = NULL;
 }
 
+void putEvenAfterOdd(node *&head)
+{
+    node *odd = head;
+    node *even = head->next;
+    node *evenStart = even;
+
+    while (odd->next != NULL && even->next != NULL)
+    {
+        odd->next = even->next;
+        odd = odd->next;
+        even->next = odd->next;
+        even = even->next;
+    }
+    odd->next = evenStart;
+    if (odd->next != NULL)
+    {
+        even->next = NULL;
+    }
+}
+
 int main()
 {
     node *head = NULL;
+    insertAtTail(head, 1);
     insertAtTail(head, 2);
-    insertAtHead(head, 4);
-    insertAtHead(head, 6);
-    insertAtTail(head, 7);
-    insertAtTail(head, 8);
-    makeCycle(head, 4);
-    cout << detectCycle(head) << endl;
-    removeCycle(head);
-    cout << detectCycle(head) << endl;
+    insertAtTail(head, 3);
+    insertAtTail(head, 4);
+    insertAtTail(head, 5);
+    insertAtTail(head, 6);
+    Display(head);
+    putEvenAfterOdd(head);
     Display(head);
     return 0;
 }
