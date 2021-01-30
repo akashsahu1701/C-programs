@@ -8,6 +8,8 @@ using namespace std;
 int main()
 {
     Account Akash;
+    cout << Akash.getName() << " " << Akash.getBalance() << endl;
+
     Akash.setName("Akash Sahu");
     Akash.setBalance(10000.00);
 
@@ -17,12 +19,10 @@ int main()
     cout << Akash.status(Akash.withdraw(1000)) << endl;
     cout << Akash.getName() << " " << Akash.getBalance() << endl;
 
-    Account *n = new Account();
-    n->setName("pankaj");
-    n->setBalance(1000);
+    Account *n = new Account{"pankaj", 10000};
 
     cout << n->getName() << " " << n->getBalance() << endl;
     n->deposit(1000);
-    cout << n->getBalance() << endl;
+    cout << n->status(n->withdraw(10000)) << " " << n->getBalance() << endl;
     return 0;
 }

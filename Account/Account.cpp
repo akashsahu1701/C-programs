@@ -40,3 +40,18 @@ string Account::status(bool something)
     }
     return "FAILED";
 }
+
+// better way of making constructors
+// faster and cleaner
+Account::Account()
+    : name{"XXXX"}, balance{0.00}
+{
+}
+Account::Account(string tempName)
+    : name{tempName}, balance{0.00}
+{
+}
+Account::Account(string tempName, double bal)
+    : name{tempName}, balance{bal}
+{
+}

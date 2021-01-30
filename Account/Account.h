@@ -23,12 +23,20 @@ public:
     bool deposit(double bal);
 
     string status(bool something);
-
-    Account()
-    {
-        name = "";
-        balance = 0.00;
-    }
+    // ordinary way for constructors
+    // Account()
+    // {
+    //     name = "test";
+    //     balance = 0.00;
+    // }
+    // Account(string tempName, double bal)
+    // {
+    //     name = tempName;
+    //     balance = bal;
+    // }
+    Account();
+    Account(string tempName);
+    Account(string tempName, double bal);
 };
 
 #endif
