@@ -7,22 +7,16 @@ using namespace std;
 
 int main()
 {
-    Account Akash;
-    cout << Akash.getName() << " " << Akash.getBalance() << endl;
-
-    Akash.setName("Akash Sahu");
-    Akash.setBalance(10000.00);
-
-    cout << Akash.getName() << " " << Akash.getBalance() << endl;
-    cout << Akash.status(Akash.deposit(100)) << endl;
-    cout << Akash.getName() << " " << Akash.getBalance() << endl;
-    cout << Akash.status(Akash.withdraw(1000)) << endl;
-    cout << Akash.getName() << " " << Akash.getBalance() << endl;
-
-    Account *n = new Account{"pankaj", 10000};
-
-    cout << n->getName() << " " << n->getBalance() << endl;
-    n->deposit(1000);
-    cout << n->status(n->withdraw(10000)) << " " << n->getBalance() << endl;
+    Account Akash("Akash Sahu");
+    Akash.display();
+    SavingAccount Poonam("Poonam Sahu", 10000, 12.5);
+    Poonam.display();
+    TrustAccount Manisha("Manisha Sahu", 1200, 13);
+    Manisha.display();
+    Manisha.withdraw(100);
+    Manisha.withdraw(100);
+    Manisha.withdraw(100);
+    Manisha.deposit(6000);
+    Manisha.display();
     return 0;
 }

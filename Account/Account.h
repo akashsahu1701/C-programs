@@ -18,6 +18,7 @@ public:
     // outside declarations
     string getName();
     double getBalance();
+    void display();
 
     bool withdraw(double bal);
     bool deposit(double bal);
@@ -35,9 +36,30 @@ public:
     //     balance = bal;
     // }
     // or Use the Default Value constructors
-    Account();
-    Account(string tempName);
-    Account(string tempName, double bal);
+    // Account();
+    // Account(string tempName);
+    Account(string tempName = "XXXX", double bal = 0.00);
+};
+
+class SavingAccount : public Account
+{
+    double interest;
+
+public:
+    void setInterest(int rate) { interest = rate; }
+    double getInterest() { return interest; }
+    void display();
+    bool withdraw(double bal);
+    SavingAccount(string tempName = "XXXX", double bal = 0.00, double rate = 0.00);
+};
+
+class TrustAccount : public SavingAccount
+{
+public:
+    void display();
+    bool withdraw(double bal);
+    bool deposit(double bal);
+    TrustAccount(string tempName = "XXXX", double bal = 0.00, double rate = 0.00);
 };
 
 #endif
