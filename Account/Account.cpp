@@ -3,8 +3,6 @@
 #include <string>
 using namespace std;
 
-int limit = 0;
-
 string Account::getName()
 {
     return name;
@@ -95,20 +93,21 @@ void TrustAccount::display()
 
 bool TrustAccount::withdraw(double bal)
 {
-    if (getBalance() * (0.20) >= bal && limit <= 3)
+    if (getBalance() * (0.20) >= bal && get_limit() < 3)
     {
         double balance = getBalance();
         balance -= bal;
         setBalance(balance);
+        int limit = get_limit();
         limit++;
+        set_limit(limit);
         return true;
     }
     return false;
 }
-
 bool TrustAccount::deposit(double bal)
 {
-    if (bal > 0)
+    if (bal > 0 && bal < 5000)
     {
         double balance = getBalance();
         balance += bal;
@@ -128,6 +127,7 @@ bool TrustAccount::deposit(double bal)
 TrustAccount::TrustAccount(string tempName, double bal, double rate)
 {
     setName(tempName);
+    set_limit(0);
     setBalance(bal);
     setInterest(rate);
 }

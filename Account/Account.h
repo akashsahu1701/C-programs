@@ -55,8 +55,12 @@ public:
 
 class TrustAccount : public SavingAccount
 {
+    int limit;
+
 public:
     void display();
+    void set_limit(int tempLimit) { limit = tempLimit; }
+    int get_limit() { return limit; }
     bool withdraw(double bal);
     bool deposit(double bal);
     TrustAccount(string tempName = "XXXX", double bal = 0.00, double rate = 0.00);
