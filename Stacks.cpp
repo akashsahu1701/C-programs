@@ -82,6 +82,7 @@ int main()
     a.push(5);
     cout << a.empty() << endl;
     a.display();
+    a.pop();
 
     cout << "\n"
          << a.Top();
