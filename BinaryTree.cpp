@@ -116,6 +116,95 @@ int sumAtKLevel(Node *root, int k)
     return sum;
 }
 
+int countNode(Node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int ans = countNode(root->left) + countNode(root->right) + 1;
+
+    return ans;
+}
+
+int sumNode(Node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int ans = sumNode(root->left) + sumNode(root->right) + root->data;
+
+    return ans;
+}
+
+int heightOfTree(Node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    int rHeight = heightOfTree(root->left);
+    int lHeight = heightOfTree(root->right);
+
+    return max(lHeight, rHeight) + 1;
+}
+
+int diameterOfTree(Node *root)
+{
+    // time complexity O(N^2);
+    if (root == NULL)
+        return 0;
+    int lheight = heightOfTree(root->left);
+    int rheight = heightOfTree(root->right);
+    int currDiameter = lheight + rheight + 1;
+
+    int lDiameter = diameterOfTree(root->left);
+    int rDiameter = diameterOfTree(root->right);
+
+    return max(currDiameter, max(lDiameter, rDiameter));
+}
+
+int diameter(Node *root, int *height)
+{
+    // time complexity O(n);
+    if (root == NULL)
+    {
+        *height = 0;
+        return 0;
+    }
+    int rh = 0, lh = 0;
+    int lDiameter = diameter(root->left, &lh);
+    int rDiameter = diameter(root->right, &rh);
+
+    int currDiameter = lh + rh + 1;
+    *height = max(lh, rh) + 1;
+    return max(currDiameter, max(lDiameter, rDiameter));
+}
+
+void sumReplace(Node *root)
+{
+    // time complexity O(n);
+    if (root == NULL)
+    {
+        return;
+    }
+
+    sumReplace(root->left);
+    sumReplace(root->right);
+
+    if (root->left != NULL)
+    {
+        root->data += root->left->data;
+    }
+    if (root->right != NULL)
+    {
+        root->data += root->right->data;
+    }
+}
+
 int main()
 {
     Node *root = new Node(1);
@@ -125,8 +214,19 @@ int main()
     root->left->right = new Node(5);
     root->right->left = new Node(6);
     root->right->right = new Node(7);
+    // levelOrderTraversal(root);
+    cout << "\n";
+    cout << sumAtKLevel(root, 1) << "\n";
+    cout << countNode(root) << "\n";
+    cout << sumNode(root) << "\n";
+    cout << heightOfTree(root) << "\n";
+    cout << diameterOfTree(root) << "\n";
+    int height = 0;
+    cout << diameter(root, &height) << "\n";
     levelOrderTraversal(root);
-    cout << "\n"
-         << sumAtKLevel(root, 2);
+    cout << "\n";
+    sumReplace(root);
+    levelOrderTraversal(root);
+    cout << "\n";
     return 0;
 }
