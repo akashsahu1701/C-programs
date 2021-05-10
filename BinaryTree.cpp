@@ -116,6 +116,64 @@ int sumAtKLevel(Node *root, int k)
     return sum;
 }
 
+void RightView(Node *root)
+{
+    if (root == NULL)
+    {
+        cout << "No Elements\n";
+        return;
+    }
+    queue<Node *> que;
+    que.push(root);
+
+    while (!que.empty())
+    {
+        int n = que.size();
+        for (int i = 0; i < n; i++)
+        {
+            Node *curr = que.front();
+            que.pop();
+            if (i == n - 1)
+            {
+                cout << curr->data << " ";
+            }
+            if (curr->left != NULL)
+                que.push(curr->left);
+            if (curr->right != NULL)
+                que.push(curr->right);
+        }
+    }
+}
+
+void leftView(Node *root)
+{
+    if (root == NULL)
+    {
+        cout << "No Elements\n";
+        return;
+    }
+    queue<Node *> que;
+    que.push(root);
+
+    while (!que.empty())
+    {
+        int n = que.size();
+        for (int i = 0; i < n; i++)
+        {
+            Node *curr = que.front();
+            que.pop();
+            if (i == 0)
+            {
+                cout << curr->data << " ";
+            }
+            if (curr->left)
+                que.push(curr->left);
+            if (curr->right)
+                que.push(curr->right);
+        }
+    }
+}
+
 int countNode(Node *root)
 {
     if (root == NULL)
@@ -215,18 +273,20 @@ int main()
     root->right->left = new Node(6);
     root->right->right = new Node(7);
     // levelOrderTraversal(root);
-    cout << "\n";
-    cout << sumAtKLevel(root, 1) << "\n";
-    cout << countNode(root) << "\n";
-    cout << sumNode(root) << "\n";
-    cout << heightOfTree(root) << "\n";
-    cout << diameterOfTree(root) << "\n";
-    int height = 0;
-    cout << diameter(root, &height) << "\n";
-    levelOrderTraversal(root);
-    cout << "\n";
-    sumReplace(root);
-    levelOrderTraversal(root);
-    cout << "\n";
+    // cout << "\n";
+    // cout << sumAtKLevel(root, 1) << "\n";
+    // cout << countNode(root) << "\n";
+    // cout << sumNode(root) << "\n";
+    // cout << heightOfTree(root) << "\n";
+    // cout << diameterOfTree(root) << "\n";
+    // int height = 0;
+    // cout << diameter(root, &height) << "\n";
+    // levelOrderTraversal(root);
+    // cout << "\n";
+    // sumReplace(root);
+    // levelOrderTraversal(root);
+    // cout << "\n";
+    RightView(root);
+    leftView(root);
     return 0;
 }

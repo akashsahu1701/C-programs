@@ -50,5 +50,7 @@ int main()
     Q.push(6);
     Q.pop();
     Q.pop();
+    Q.push(8);
+    Q.pop();
     Q.pop();
 }
